@@ -1,4 +1,5 @@
-# Everest Bot
+# Everest Bot  ![Continous Integration](https://github.com/KTH/butternut/actions/workflows/main.yml/badge.svg)
+
 
 Our Slack bot, _Everest bot_ runs inside one of our Azure vm:s and can talk with the cluster and applications inside. The bot also does UptimeRobot checking.
 
