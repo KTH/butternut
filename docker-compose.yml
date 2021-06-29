@@ -1,0 +1,55 @@
+version: '3.6'
+
+services:
+  butternut:
+
+    build: .
+
+    env_file:
+      - .env
+      
+    labels:
+      - se.kth.team=team-pipeline
+      - se.kth.cluster=management
+      - se.kth.slackChannels="#team-pipeline-build"
+      - se.kth.publicName.english="Everest bot"
+      - se.kth.publicName.swedish="Everest bot"
+      - se.kth.description.english="Slack bot that provides logs and services."
+      - se.kth.description.swedish="Slack bot som tillhandahåller loggar och info."
+      - se.kth.importance="low"
+      
+    volumes:
+      - /var/run:/var/run
+      - ~/.docker:/root/.docker
+      
+    environment: 
+      BUTTERNUT_VERSION: "~1.0.0"
+      #KEYSTONE_API_URL: http://portillo:3020/api/v1
+
+    deploy:
+      # How many replicas should be running of this service?
+      replicas: 1
+
+      # Take down one container at a time.
+      update_config:
+        parallelism: 1
+
+      # Decided what policy to enforce when restarting the container
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 2
+
+      # Decides the reserverd and limitations of cpu and memory usage
+      resources:
+        limits:
+          cpus: '1'
+          memory: 500M
+        reservations:
+          cpus: '0.1'
+          memory: 100M
+    # Limit the logging stored on the worker vm:s. All logs are found in OMS.
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
