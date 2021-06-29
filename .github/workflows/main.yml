@@ -17,7 +17,7 @@ jobs:
         shell: bash
         env:
           SLACK_CHANNELS: "#team-pipeline-build"
-          BUILD_INFORMATION_OUTPUT_FILE: "/config/version.js"
+          BUILD_INFORMATION_OUTPUT_FILE: "/version.conf"
           EVOLENE_TEST_SECRETS: "${{secrets.EVOLENE_TEST_SECRETS}}"
         run: |
           ${{ secrets.EVOLENE_RUN_COMMAND }}
