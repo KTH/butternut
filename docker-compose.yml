@@ -4,6 +4,7 @@ services:
   butternut:
 
     build: .
+    #image: kthregistry.azurecr.io/butternut:2.0.1640995241_e143629
 
     env_file:
       - .env
