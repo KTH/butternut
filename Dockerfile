@@ -9,8 +9,6 @@ RUN apk upgrade && \
     apk update && \
     apk add --no-cache bash git openssh curl docker tzdata
 
-RUN pip3 install pytz
-
 ENV TZ=Europe/Stockholm
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
